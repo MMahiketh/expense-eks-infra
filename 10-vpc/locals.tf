@@ -1,5 +1,7 @@
 locals {
   ssm_prefix = "/${var.project}/${var.environment}"
+  network    = ["public", "private", "database"]
+  
   vpc_cidr   = "10.0.0.0/16"
 
   subnet_cidrs = [
