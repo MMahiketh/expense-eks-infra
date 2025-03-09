@@ -16,12 +16,12 @@ module "node" {
   vpc_id      = local.vpc_id
 }
 
-module "control_plan" {
+module "control_plane" {
   source = "git::https://github.com/MMahiketh/terraform-sg-module.git?ref=master"
 
   project     = var.project
   environment = var.environment
-  instance    = "control-plan"
+  instance    = "control-plane"
   vpc_id      = local.vpc_id
 }
 

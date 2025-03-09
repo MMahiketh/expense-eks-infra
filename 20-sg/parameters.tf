@@ -10,10 +10,10 @@ resource "aws_ssm_parameter" "node_sg_id" {
   value = module.node.id
 }
 
-resource "aws_ssm_parameter" "control_plan_sg_id" {
-  name  = "${local.ssm_prefix}/control_plan/sg_id"
+resource "aws_ssm_parameter" "control_plane_sg_id" {
+  name  = "${local.ssm_prefix}/control_plane/sg_id"
   type  = "String"
-  value = module.control_plan.id
+  value = module.control_plane.id
 }
 
 resource "aws_ssm_parameter" "bastion_sg_id" {
