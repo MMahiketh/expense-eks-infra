@@ -1,6 +1,5 @@
 locals {
-  project     = "expense"
-  environment = "dev"
+  ssm_prefix  = "/${var.project}/${var.environment}"
   vpc_cidr    = "10.0.0.0/16"
 
   subnet_cidrs = [
