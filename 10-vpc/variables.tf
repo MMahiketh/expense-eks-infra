@@ -1,9 +1,9 @@
 variable "project" {
-  type = string
+  type    = string
   default = "expense"
 }
 
 variable "environment" {
-  type = string
+  type    = string
   default = "dev"
 }
