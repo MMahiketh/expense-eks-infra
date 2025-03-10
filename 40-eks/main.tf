@@ -47,18 +47,18 @@ module "main" {
       key_name = resource.aws_key_pair.eks.key_name
     }
 
-    # green = {
-    #   max_size      = 10
-    #   min_size      = 2
-    #   desired_size  = 2
-    # #   capacity_type = "SPOT"
-    #   iam_role_additional_policies = {
-    #     AmazonEBSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-    #     AmazonEFSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-    #     ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-    #   }
-    #   key_name = resource.aws_key_pair.eks.key_name
-    # }
+    green = {
+      max_size      = 10
+      min_size      = 2
+      desired_size  = 2
+    #   capacity_type = "SPOT"
+      iam_role_additional_policies = {
+        AmazonEBSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+        AmazonEFSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+        ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
+      }
+      key_name = resource.aws_key_pair.eks.key_name
+    }
   }
 
   enable_cluster_creator_admin_permissions = true
