@@ -36,7 +36,7 @@ resource "aws_acm_certificate_validation" "main" {
 
 #Parameters
 resource "aws_ssm_parameter" "https_certificate_arn" {
-  name  = "${local.ssm_prefix}/https_certificate/arn"
+  name  = "${local.ssm_prefix}/certificate/arn"
   type  = "String"
   value = aws_acm_certificate.main.arn
 }
