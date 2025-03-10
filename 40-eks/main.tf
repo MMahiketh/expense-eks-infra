@@ -7,7 +7,7 @@ module "main" {
   source = "terraform-aws-modules/eks/aws"
 
   cluster_name    = local.resource_name
-  cluster_version = "1.30"
+  cluster_version = "1.31"
 
   cluster_endpoint_public_access = true
 
@@ -34,18 +34,18 @@ module "main" {
   }
 
   eks_managed_node_groups = {
-    blue = {
-      max_size      = 10
-      min_size      = 2
-      desired_size  = 2
-      capacity_type = "SPOT"
-      iam_role_additional_policies = {
-        AmazonEBSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-        AmazonEFSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-        ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-      }
-      key_name = resource.aws_key_pair.eks.key_name
-    }
+    # blue = {
+    #   max_size      = 10
+    #   min_size      = 2
+    #   desired_size  = 2
+    #   capacity_type = "SPOT"
+    #   iam_role_additional_policies = {
+    #     AmazonEBSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+    #     AmazonEFSCSIDriverPolicy       = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+    #     ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
+    #   }
+    #   key_name = resource.aws_key_pair.eks.key_name
+    # }
 
     green = {
       max_size      = 10
