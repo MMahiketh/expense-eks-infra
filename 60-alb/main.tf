@@ -18,7 +18,7 @@ module "main" {
   )
 }
 
-resource "aws_alb_listener" "main" {
+resource "aws_lb_listener" "main" {
   load_balancer_arn = module.main.arn
   port              = 443
   protocol          = "HTTPS"
@@ -31,7 +31,7 @@ resource "aws_alb_listener" "main" {
     fixed_response {
       content_type = "text/html"
       message_body = "<h1>I'am ingress ALB</h1>"
-      status_code  = 200
+      status_code  = "200"
     }
   }
 }
@@ -43,7 +43,7 @@ module "records" {
 
   records = [
     {
-      name = "${local.resource_name}" # expense-dev.mahdo.site
+      name = local.resource_name
       type = "A"
       alias = {
         name    = module.main.dns_name
@@ -54,7 +54,7 @@ module "records" {
   ]
 }
 
-resource "aws_alb_target_group" "expense" {
+resource "aws_lb_target_group" "expense" {
   name        = local.resource_name
   port        = 80
   protocol    = "HTTP"
@@ -67,19 +67,19 @@ resource "aws_alb_target_group" "expense" {
     interval            = 5
     matcher             = "200-299"
     path                = "/"
+    port                = 80
     protocol            = "HTTP"
     timeout             = 4
   }
 }
 
-resource "aws_alb_listener_rule" "frontend" {
-  listener_arn = aws_alb_listener.main.arn
+resource "aws_lb_listener_rule" "frontend" {
+  listener_arn = aws_lb_listener.main.arn
   priority     = 100
 
   action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.expense.arn
-
+    target_group_arn = aws_lb_target_group.expense.arn
   }
 
   condition {
