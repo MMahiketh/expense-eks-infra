@@ -20,7 +20,7 @@ module "main" {
 
 resource "aws_lb_listener" "main" {
   load_balancer_arn = module.main.arn
-  port              = 443
+  port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
   certificate_arn   = local.certificate_arn
@@ -87,4 +87,8 @@ resource "aws_lb_listener_rule" "frontend" {
       values = ["${local.resource_name}.${local.zone_name}"]
     }
   }
+}
+
+output "target_group_arn" {
+  value = aws_lb_target_group.expense.arn
 }
